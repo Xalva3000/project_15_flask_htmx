@@ -1,10 +1,7 @@
 from flask import Blueprint, render_template
 
 
-index_app = Blueprint(
-    "index_app",
-    __name__
-)
+index_app = Blueprint("index_app", __name__)
 
 app = index_app
 
