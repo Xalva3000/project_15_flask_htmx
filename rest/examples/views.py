@@ -15,3 +15,10 @@ def handle_ping():
     if request.method == "POST":
         return "Pong!"
     return render_template("examples/ping/ping.html")
+
+
+@app.route("/hover/", methods=["GET", "POST"], endpoint="hover")
+def handle_hover():
+    if request.method == "POST":
+        return "I see you!"
+    return render_template("examples/hover/hover.html")
