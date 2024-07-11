@@ -5,8 +5,12 @@ from rest.examples import examples_app
 
 def create_app():
     app = Flask(__name__)
+    app.config.update(TEMPLATES_AUTO_RELOAD=True)
     app.register_blueprint(index_app)
-    app.register_blueprint(examples_app, url_prefix="/examples",)
+    app.register_blueprint(
+        examples_app,
+        url_prefix="/examples",
+    )
     return app
 
 

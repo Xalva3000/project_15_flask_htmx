@@ -7,12 +7,10 @@
 {% block body %}
  <h1>Examples:</h1>
     <ul>
-      <li>Example 1</li>
+      <li><a href="{{ url_for('examples_app.ping') }}"> Example ping</a></li>
     </ul>
-
+<hr>
   <div>
-    <ul>
-      <li><a href="{{ url_for('index_app.index') }}"> Back to main page</a></li>
-    </ul>
+      <a href="{{ url_for('index_app.index') }}"> Back to main page</a>
   </div>
 {% endblock %}

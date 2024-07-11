@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Ping example
+{% endblock %}
+
+{% block body %}
+<h1>Send Ping</h1>
+    <div>
+        <button hx-post="{{ url_for('examples_app.ping') }}">Send Ping</button>
+    </div>
+
+    <hr>
+
+    <div>
+        <a href="{{ url_for('index_app.index') }}"> Back to main page</a>
+    </div>
+{% endblock %}
