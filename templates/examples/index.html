@@ -10,8 +10,5 @@
       <li><a href="{{ url_for('examples_app.ping') }}"> Example ping</a></li>
       <li><a href="{{ url_for('examples_app.hover') }}"> Example hover</a></li>
     </ul>
-<hr>
-  <div>
-      <a href="{{ url_for('index_app.index') }}"> Back to main page</a>
-  </div>
+{% include 'examples/components/footer.html' %}
 {% endblock %}

@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
 
 {% block title %}
- Index Page
+ Examples list
 {% endblock %}
 
 {% block body %}
- <p>Hello!</p>
+ <h1>Clicker:</h1>
+<h3>Clicker</h3>
+<div>
+    <div>Clicked items {{ count }}</div>
+    <button>Click!</button>
 
- <h2><a href="{{ url_for('examples_app.index') }}">Examples</a></h2>
+</div>
 {% include 'examples/components/footer.html' %}
 {% endblock %}
