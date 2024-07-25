@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
 {% block title %}
- Examples list
+ Clicker
 {% endblock %}
 
 {% block body %}
- <h1>Clicker:</h1>
 <h3>Clicker</h3>
 <div>
-    <div>Clicked items {{ count }}</div>
-    <button>Click!</button>
+    <div id="clicked-times">{% include 'clicker/components/click_count.html' %}</div>
+    <button hx-post="{{ url_for('clicker_app.index') }}" hx-target="#clicked-times"
+    >Click!</button>
 
 </div>
 {% include 'examples/components/footer.html' %}
