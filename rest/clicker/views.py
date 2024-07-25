@@ -13,7 +13,10 @@ clicker = ClickerRepository()
 def clicker_handler():
     template_name = "clicker/index.html"
     if bool(request.headers.get('Hx-Request')):
-        template_name = "clicker/components/click_count.html"
+        if request.method == "GET":
+            template_name = "clicker/components/clicker_body.html"
+        else:
+            template_name = "clicker/components/click_count.html"
     if request.method == "GET":
         count = clicker.counter
         return render_template(template_name, count=count)

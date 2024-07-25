@@ -5,12 +5,7 @@
 {% endblock %}
 
 {% block body %}
-<h3>Clicker</h3>
-<div>
-    <div id="clicked-times">{% include 'clicker/components/click_count.html' %}</div>
-    <button hx-post="{{ url_for('clicker_app.index') }}" hx-target="#clicked-times"
-    >Click!</button>
-
-</div>
-{% include 'examples/components/footer.html' %}
+    <h3>Clicker</h3>
+    {% include 'clicker/components/clicker_body.html' %}
+    {% include 'examples/components/footer.html' %}
 {% endblock %}
