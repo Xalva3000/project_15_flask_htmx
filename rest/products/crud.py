@@ -6,11 +6,13 @@ from faker import Faker
 
 fake = Faker()
 
+
 @dataclass
 class Product:
     id: int
     name: str
     price: int
+
 
 @dataclass
 class ProductsStorage:
