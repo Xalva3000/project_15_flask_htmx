@@ -7,8 +7,8 @@
 {% block body %}
     <h1>Products</h1>
     <ul>
-        {% for product in ['p1', 'p2', 'p3'] %}
-        <li>{{ product }}</li>
+        {% for product in products %}
+        <li>{{ product.name }} {{ product.price }}$</li>
         {% endfor %}
     </ul>
 {% endblock %}
