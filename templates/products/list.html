@@ -9,7 +9,7 @@
     <form
         hx-post="{{ url_for('products_app.create') }}"
         hx-target="#products_list"
-        hx-swap="outerHTML"
+        hx-swap="beforeend"
         hx-on::after-request="if (event.detail.successful) this.reset()"
     >
         <label for="product_name">Name</label>
