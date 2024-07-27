@@ -1,5 +1,7 @@
-from flask import Blueprint, request, render_template, redirect, url_for
-from werkzeug.exceptions import BadRequest, UnprocessableEntity
+from flask import Blueprint, request, render_template, redirect, url_for, Response
+from http import HTTPStatus
+
+from werkzeug.exceptions import HTTPException
 
 from .crud import products_storage
 
@@ -22,11 +24,20 @@ def create_product():
     if product_price.isdigit() and product_name.isalpha():
         product = products_storage.add(product_name, int(product_price))
     else:
-        raise UnprocessableEntity
+        error = 'Price is digit, name is alphabetical.'
+        return render_template(
+            "products/components/form.html",
+            error=error,
+            product_name=product_name,
+            product_price=product_price
+        )
+
+    # , HTTPStatus.UNPROCESSABLE_ENTITY
+    # raise HTTPStatus.UnprocessableEntity
     # для стандартной формы
     # return redirect(url_for("products_app.list"))
     # products = products_storage.get_list()
     return render_template(
-        "products/components/product-oob.html",
+        "products/components/form_and_product-oob.html",
         product=product
     )

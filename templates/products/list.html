@@ -6,32 +6,6 @@
 
 {% block body %}
     <h1>Products</h1>
-<!--        hx-target="#products_list"-->
-<!--        hx-swap="beforeend"-->
-    <form
-        hx-post="{{ url_for('products_app.create') }}"
-        hx-swap="none"
-        hx-on::after-request="if (event.detail.successful) this.reset()"
-    >
-        <label for="product_name">Name</label>
-        <input
-                type="text"
-                id="product_name"
-                name="product_name"
-                required
-        >
-        <label for="product_price">Price</label>
-        <input
-                type="number"
-                id="product_price"
-                name="product_price"
-                min="1"
-                max="100000"
-                required
-        >
-
-        <button type="submit">add</button>
-    </form>
-
+{% include 'products/components/form.html' %}
 {% include 'products/components/products_list.html' %}
 {% endblock %}
