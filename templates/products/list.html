@@ -6,7 +6,12 @@
 
 {% block body %}
     <h1>Products</h1>
-    <form method="post">
+    <form
+        hx-post="{{ url_for('products_app.create') }}"
+        hx-target="#products_list"
+        hx-swap="outerHTML"
+        hx-on::after-request="if (event.detail.successful) this.reset()"
+    >
         <label for="product_name">Name</label>
         <input
                 type="text"
@@ -26,10 +31,5 @@
 
         <button type="submit">add</button>
     </form>
-
-    <ul>
-        {% for product in products %}
-        <li>{{ product.name }} {{ product.price }}$</li>
-        {% endfor %}
-    </ul>
+{% include 'products/components/products_list.html' %}
 {% endblock %}
