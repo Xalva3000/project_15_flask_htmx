@@ -24,6 +24,10 @@ class ProductsStorage:
         self.last_id += 1
         return self.last_id
 
+    @property
+    def names(self):
+        return set([product.name for product in self.products.values()])
+
     def add(self, name, price):
         product = Product(
             id=self.next_id,
@@ -35,6 +39,10 @@ class ProductsStorage:
 
     def get_list(self):
         return list(self.products.values())
+
+    def name_exists(self, product_name):
+        return product_name in self.names
+
 
 
 products_storage = ProductsStorage()
