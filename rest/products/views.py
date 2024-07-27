@@ -27,6 +27,6 @@ def create_product():
     # return redirect(url_for("products_app.list"))
     # products = products_storage.get_list()
     return render_template(
-        "products/components/product.html",
+        "products/components/product-oob.html",
         product=product
     )

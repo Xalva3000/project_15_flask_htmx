@@ -6,10 +6,11 @@
 
 {% block body %}
     <h1>Products</h1>
+<!--        hx-target="#products_list"-->
+<!--        hx-swap="beforeend"-->
     <form
         hx-post="{{ url_for('products_app.create') }}"
-        hx-target="#products_list"
-        hx-swap="beforeend"
+        hx-swap="none"
         hx-on::after-request="if (event.detail.successful) this.reset()"
     >
         <label for="product_name">Name</label>
@@ -31,5 +32,6 @@
 
         <button type="submit">add</button>
     </form>
+
 {% include 'products/components/products_list.html' %}
 {% endblock %}
