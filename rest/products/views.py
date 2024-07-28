@@ -1,7 +1,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for, Response
 from http import HTTPStatus
 
-from werkzeug.exceptions import HTTPException
+from werkzeug.exceptions import HTTPException, NotFound
 
 from .crud import products_storage
 from .form import ProductForm
@@ -55,6 +55,18 @@ def create_product():
         product=product,
         form=ProductForm(formdata=None),
     )
+
+
+@app.get("/<int:product_id>/", endpoint="details")
+def get_product_by_id(product_id):
+    product = products_storage.get_by_id(product_id)
+    if not product:
+        raise NotFound(f"Product with id {product_id} does not exist!")
+    return render_template(
+        "products/details.html",
+        product=product
+    )
+
 
 @app.delete("<int:product_id>", endpoint="delete")
 def delete_product(product_id):

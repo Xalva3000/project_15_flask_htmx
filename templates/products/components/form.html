@@ -32,20 +32,6 @@
         hx-post="{{ url_for('products_app.create') }}"
         hx-swap="outerHTML"
     >
-        {{ form.csrf_token }}
-    <div>
-        {{ form.name.label }} {{ form.name(size=20) }}
-        {% if form.name.errors %}
-            {{ errors_list(form.name.errors) }}
-        {% endif %}
-    </div>
-    <div>
-        {{ form.price.label }} {{ form.price(size=20) }}
-        {% if form.price.errors %}
-            {{ errors_list(form.price.errors) }}
-        {% endif %}
-    </div>
-
-
-        {{ form.submit }}
-    </form>
+    {% include 'products/components/form_body.html' %}
+    {{ form.submit }}
+</form>

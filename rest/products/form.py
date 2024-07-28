@@ -26,3 +26,4 @@ class ProductForm(FlaskForm):
                     ],
     )
     submit = SubmitField(label="Add product")
+    update_submit = SubmitField(label="Update product")
