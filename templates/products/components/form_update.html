@@ -2,7 +2,7 @@
 
 <form
         id="update_product"
-        hx-post="{{ url_for('products_app.update') }}"
+        hx-put="{{ url_for('products_app.update', product_id=product.id) }}"
         hx-swap="outerHTML"
     >
     {% include 'products/components/form_body.html' %}

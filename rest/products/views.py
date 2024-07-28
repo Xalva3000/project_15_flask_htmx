@@ -1,3 +1,5 @@
+from dataclasses import asdict
+
 from flask import Blueprint, request, render_template, redirect, url_for, Response
 from http import HTTPStatus
 
@@ -56,16 +58,42 @@ def create_product():
         form=ProductForm(formdata=None),
     )
 
+def get_product(product_id):
+    product = products_storage.get_by_id(product_id)
+    if product:
+        return product
+    raise NotFound(f"Product with id {product_id} does not exist!")
 
 @app.get("/<int:product_id>/", endpoint="details")
 def get_product_by_id(product_id):
-    product = products_storage.get_by_id(product_id)
-    if not product:
-        raise NotFound(f"Product with id {product_id} does not exist!")
+    product = get_product(product_id)
     return render_template(
         "products/details.html",
-        product=product
+        product=product,
+        form=ProductForm(data=asdict(product))
     )
+
+@app.put("/<int:product_id>/", endpoint="update")
+def update_product(product_id):
+    product = get_product(product_id)
+    form = ProductForm()
+    if not form.validate_on_submit():
+        return render_template(
+            "products/components/form_update.html",
+            form=form,
+            product=product,
+        )
+    else:
+        products_storage.update(
+            product_id=product.id,
+            product_name=form.name.data,
+            product_price=form.price.data,
+        )
+        return render_template(
+            "products/components/form_update.html",
+            form=form,
+            product=product,
+        )
 
 
 @app.delete("<int:product_id>", endpoint="delete")

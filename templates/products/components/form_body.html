@@ -1,10 +1,12 @@
     {{ form.csrf_token }}
+
 <div>
     {{ form.name.label }} {{ form.name(size=20) }}
     {% if form.name.errors %}
         {{ errors_list(form.name.errors) }}
     {% endif %}
 </div>
+
 <div>
     {{ form.price.label }} {{ form.price(size=20) }}
     {% if form.price.errors %}
