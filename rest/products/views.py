@@ -55,3 +55,9 @@ def create_product():
         product=product,
         form=ProductForm(formdata=None),
     )
+
+@app.delete("<int:product_id>", endpoint="delete")
+def delete_product(product_id):
+    products_storage.delete(product_id)
+    return Response(status=HTTPStatus.OK) # HTTPStatus.NO_CONTENT
+

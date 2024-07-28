@@ -25,5 +25,3 @@ def clicker_handler():
     else:
         count = clicker.increase()
         return render_template(template_name, count=count)
-
-
