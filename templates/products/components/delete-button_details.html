@@ -1,0 +1,19 @@
+<button
+        hx-delete="{{ url_for(
+        'products_app.delete',
+         product_id=product.id,
+         redirect=true
+         ) }}"
+        hx-headers='{"X-CSRFToken": "{{ csrf_token() }}"}'
+        hx-indicator="#loading"
+        hx-target="body"
+        hx-push-url="true"
+    >
+        Delete
+</button>
+
+<span id="loading">
+    {% include 'components/loading.html' %}
+</span>
+
+{% include 'components/loading.html' %}

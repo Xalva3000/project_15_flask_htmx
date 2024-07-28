@@ -99,5 +99,9 @@ def update_product(product_id):
 @app.delete("<int:product_id>", endpoint="delete")
 def delete_product(product_id):
     products_storage.delete(product_id)
-    return Response(status=HTTPStatus.OK) # HTTPStatus.NO_CONTENT
+    if not request.args.get("redirect"):
+        return Response(status=HTTPStatus.OK)
+    url = url_for("products_app.list")
+    return redirect(url, code=HTTPStatus.SEE_OTHER)
+    # return Response(status=HTTPStatus.OK) # HTTPStatus.NO_CONTENT
 

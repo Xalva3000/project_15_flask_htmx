@@ -8,11 +8,12 @@
     <h1>Product №{{ product.id }} details</h1>
 <hr>
     <div>
-        Name {{ product.name }}
-        Price {{ product.price }}
+        <p>Name {{ product.name }}</p>
+        <p>Price {{ product.price }}</p>
     </div>
 <hr>
     {% include 'products/components/form_update.html' %}
+    {% include 'products/components/delete-button_details.html' %}
 <hr>
 
     <div>
