@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, request
 
+from csrf_protection import csrf
+
 examples_app = Blueprint("examples_app", __name__)
 
 app = examples_app
@@ -11,6 +13,7 @@ def examples_list():
 
 
 @app.route("/ping/", methods=["GET", "POST"], endpoint="ping")
+@csrf.exempt
 def handle_ping():
     if request.method == "POST":
         return "Pong!"
@@ -18,6 +21,7 @@ def handle_ping():
 
 
 @app.route("/hover/", methods=["GET", "POST"], endpoint="hover")
+@csrf.exempt
 def handle_hover():
     if request.method == "POST":
         return "I see you!"

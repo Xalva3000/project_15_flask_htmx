@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template, request
+
+from csrf_protection import csrf
 from .crud import ClickerRepository
 
 clicker_app = Blueprint("clicker_app", __name__)
@@ -8,7 +10,7 @@ app = clicker_app
 clicker = ClickerRepository()
 
 
-
+# @csrf.exempt
 @app.route("/", methods=['GET', 'POST'], endpoint="index")
 def clicker_handler():
     template_name = "clicker/index.html"

@@ -1,5 +1,8 @@
 <div>
     <div id="clicked-times">{% include 'clicker/components/click_count.html' %}</div>
-    <button hx-post="{{ url_for('clicker_app.index') }}" hx-target="#clicked-times"
+    <button
+            hx-post="{{ url_for('clicker_app.index') }}"
+            hx-headers='{"X-CSRFToken": "{{ csrf_token() }}"}'
+            hx-target="#clicked-times"
     >Click!</button>
 </div>
