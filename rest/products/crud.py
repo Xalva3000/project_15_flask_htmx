@@ -61,4 +61,4 @@ class ProductsStorage:
 
 products_storage = ProductsStorage()
 
-[products_storage.add(name=fake.last_name(), price=randint(1_000, 10_000)) for _ in range(10)]
+[products_storage.add(name='p-' + str(num) + '-' + fake.last_name(), price=randint(1_000, 10_000)) for num in range(100)]

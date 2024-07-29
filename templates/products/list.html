@@ -5,7 +5,14 @@
 {% endblock %}
 
 {% block body %}
+
     <h1>Products</h1>
-{% include 'products/components/form.html' %}
-{% include 'products/components/products_list.html' %}
+<div>
+    {% include 'products/components/form.html' %}
+</div>
+
+<div>
+{% include 'products/components/products_list_reveal.html' %}
+</div>
+
 {% endblock %}

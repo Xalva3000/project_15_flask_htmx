@@ -8,19 +8,33 @@ from werkzeug.exceptions import HTTPException, NotFound
 from .crud import products_storage
 from .form import ProductForm
 
+
 products_app = Blueprint("products_app", __name__)
 
 app = products_app
+
+PAGE_DEFAULT = 1
+PER_PAGE_DEFAULT = 10
 
 
 @app.get("/", endpoint="list")
 def get_products_list():
     form = ProductForm()
-    products = products_storage.get_list()
+    all_products = products_storage.get_list()
+    page = request.args.get("page", 1, type=int)
+    per_page = request.args.get("per_page", 10, type=int)
+    to_idx = page * per_page
+    from_idx = to_idx - per_page
+    products = all_products[from_idx:to_idx]
+    next_page = to_idx < len(all_products) and page + 1
+    template_name = "products/list.html"
+    if request.args.get("pr_cycle"):
+        template_name = "products/components/pr-cycle_reveal.html"
     return render_template(
-        "products/list.html",
+        template_name_or_list=template_name,
         products=products,
         form=form,
+        next_page=next_page,
     )
 
 
